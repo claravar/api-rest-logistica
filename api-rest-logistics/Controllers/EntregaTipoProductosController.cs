@@ -57,6 +57,28 @@ namespace api_rest_logistics.Controllers
 
             try
             {
+                try
+                {
+                    using (Model db = new Model())
+                    {
+                        var lst = db.TipoProducto
+                        .Where(d => d.IdTipoProducto == entregaTipoProducto.TipoProductoId);
+
+                        if (lst.Count() > 0)
+                        {
+                            foreach (var item in lst)
+                            {
+                                entregaTipoProducto.Precio = item.Precio;
+                                entregaTipoProducto.Total = entregaTipoProducto.Cantidad * entregaTipoProducto.Precio;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+
                 await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)

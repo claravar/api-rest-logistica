@@ -7,7 +7,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAe6eCA8p8SEWfuHhBxNovGAAAAAACAAAAAAAQZgAAAAEAACAAAABCxSSkB9dHydZ8i5y65n1RuGt1Fj3VaAOnnevzV8kLBQAAAAAOgAAAAAIAACAAAACU9kusYmj7HdxGiu8FL/+ggCxN/louKDOoXZSY9WTZ24AAAAANTlU1oVmIhzMyk4D9cvxph2rhAjhNgXq7DjFnrQ6xXshn0GUXvEX4oqiQWXCE39IWea1eo49RCeM5al740lXzI9Sm85ZdyiynC//I1ZrCTsRtzvxIISRhEmcbQ7ILnNUH3NFrzNKfDgBczYmSBGzWK4pZq/YmbWs2/dlTF/a5okAAAABHagNqa++OQgALwyulULlTA32IqPTT7gc3VHSZ9J19g7zxNfn3XAdtiQmEKV0MLZhvHWZtopiDK30LboDbI8g2</EncryptedPassword>
-    <History>True|2023-08-12T15:02:03.3370487Z;False|2023-08-12T08:38:46.1303975-06:00;False|2023-08-12T08:36:28.1224482-06:00;</History>
+    <History>True|2023-08-12T15:18:15.5268793Z;True|2023-08-12T09:12:37.3166805-06:00;True|2023-08-12T09:02:03.3370487-06:00;False|2023-08-12T08:38:46.1303975-06:00;False|2023-08-12T08:36:28.1224482-06:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>
