@@ -35,7 +35,7 @@ namespace api_rest_logistics.Models
         public string LastName { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(2000)]
         public string Pass { get; set; }
 
         [Required]

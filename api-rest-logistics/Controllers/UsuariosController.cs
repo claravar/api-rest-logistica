@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using api_rest_logistics.Models;
+using api_rest_logistics.Security;
 
 namespace api_rest_logistics.Controllers
 {
@@ -80,6 +81,12 @@ namespace api_rest_logistics.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            var password = usuario.Pass;
+           
+            string encryptPassword = EncryptGenerator.Encrypt(password);
+
+            usuario.Pass = encryptPassword;
 
             db.Usuario.Add(usuario);
             await db.SaveChangesAsync();

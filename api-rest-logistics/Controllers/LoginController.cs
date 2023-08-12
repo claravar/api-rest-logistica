@@ -25,11 +25,17 @@ namespace api_rest_logistics.Controllers
             {
                 using (Model db = new Model())
                 {
+                    var password = login.Password;
+                   
+                    string encryptPassword = EncryptGenerator.Encrypt(password);
+                                       
                     var lst = db.Usuario
-                        .Where(d => d.Username == login.Username && d.Pass == login.Password && d.Active == true);
+                        .Where(d => d.Username == login.Username && d.Pass == encryptPassword && d.Active == true);
+
 
                     if (lst.Count() > 0)
                     {
+
                         var rolename = "Developer";
                         var token = TokenGenerator.GenerateTokenJwt(login.Username, rolename);
                         return Ok(token);

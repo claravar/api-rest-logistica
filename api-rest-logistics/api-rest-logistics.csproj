@@ -217,6 +217,7 @@
     <Compile Include="Controllers\TipoProductosController.cs" />
     <Compile Include="Controllers\TransportesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Models\Bodega.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Entrega.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Models\TipoProducto.cs" />
     <Compile Include="Models\Transporte.cs" />
     <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Security\EncryptGenerator.cs" />
     <Compile Include="Security\TokenGenerator.cs" />
     <Compile Include="Security\TokenValidationHandler.cs" />
     <Compile Include="Global.asax.cs">
