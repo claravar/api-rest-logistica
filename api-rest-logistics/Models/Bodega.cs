@@ -2,7 +2,6 @@ namespace api_rest_logistics.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -20,5 +19,7 @@ namespace api_rest_logistics.Models
         [Required]
         [StringLength(200)]
         public string Direccion { get; set; }
+
+        public virtual ICollection<Entrega> Entrega { get; set; }
     }
 }

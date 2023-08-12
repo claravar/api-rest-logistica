@@ -81,26 +81,32 @@ namespace api_rest_logistics.Controllers
                 return BadRequest(ModelState);
             }
 
+            if(transporte.TipoTransporte == "MARÍTIMO")
+            {
+                if (!FlotaExists(transporte.Flota))
+                {
+                    db.Transporte.Add(transporte);
+                    await db.SaveChangesAsync();
+                }
+                else
+                {
+                    ModelState.AddModelError(nameof(transporte.Flota), $"La Flota {transporte.Flota} ya existe.");
+                    return BadRequest(ModelState);
+                }
+            }
 
-           if(!FlotaExists(transporte.Flota) && (transporte.Placa == "")){
-                db.Transporte.Add(transporte);
-                await db.SaveChangesAsync();
-            }
-            else
+            if (transporte.TipoTransporte == "TERRESTRE")
             {
-                ModelState.AddModelError(nameof(transporte.Flota), $"El nombre {transporte.Flota} ya existe.");
-                return BadRequest(ModelState);
-            }
-            
-            if(!PlacaExists(transporte.Placa) && (transporte.Flota == ""))
-            {
-                db.Transporte.Add(transporte);
-                await db.SaveChangesAsync();
-            }
-            else
-            {
-                ModelState.AddModelError(nameof(transporte.Placa), $"El nombre {transporte.Placa} ya existe.");
-                return BadRequest(ModelState);
+                if (!PlacaExists(transporte.Placa))
+                {
+                    db.Transporte.Add(transporte);
+                    await db.SaveChangesAsync();
+                }
+                else
+                {
+                    ModelState.AddModelError(nameof(transporte.Placa), $"La Placa {transporte.Placa} ya existe.");
+                    return BadRequest(ModelState);
+                }
             }
 
             return CreatedAtRoute("DefaultApi", new { id = transporte.IdTransporte }, transporte);
@@ -140,6 +146,7 @@ namespace api_rest_logistics.Controllers
         private bool FlotaExists(string flota)
         {
             return db.Transporte.Count(e => e.Flota.ToUpper() == flota.ToUpper()) > 0;
+            
         }
 
         private bool PlacaExists(string placa)

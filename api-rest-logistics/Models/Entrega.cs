@@ -9,12 +9,6 @@ namespace api_rest_logistics.Models
     [Table("Entrega")]
     public partial class Entrega
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Entrega()
-        {
-            EntregaTipoProducto = new HashSet<EntregaTipoProducto>();
-        }
-
         [Key]
         public int IdEntrega { get; set; }
 
@@ -40,21 +34,19 @@ namespace api_rest_logistics.Models
 
         [Required]
         [StringLength(10)]
+        [RegularExpression(@"^[a-zA-Z0-9]{10}$", ErrorMessage = "El número de guía debe ser alfanúmerico")]
         public string NumeroGuia { get; set; }
 
         [Required]
         [StringLength(10)]
         public string TipoEntrega { get; set; }
 
+        public virtual Cliente Cliente { get; set; }
+        public virtual Puerto Puerto { get; set; }
+        public virtual Transporte Transporte { get; set; }
         public virtual Bodega Bodega { get; set; }
 
-        public virtual Cliente Cliente { get; set; }
-
-        public virtual Puerto Puerto { get; set; }
-
-        public virtual Transporte Transporte { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EntregaTipoProducto> EntregaTipoProducto { get; set; }
+    
     }
 }

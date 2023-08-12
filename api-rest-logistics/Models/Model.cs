@@ -31,7 +31,13 @@ namespace api_rest_logistics.Models
             modelBuilder.Entity<Bodega>()
                 .Property(e => e.Direccion)
                 .IsUnicode(false);
-                    
+
+            modelBuilder.Entity<Bodega>()
+               .HasMany(e => e.Entrega)
+               .WithRequired(e => e.Bodega)
+               .HasForeignKey(e => e.BodegaId)
+               .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Cliente>()
                 .Property(e => e.Nombre)
                 .IsUnicode(false);
@@ -53,6 +59,8 @@ namespace api_rest_logistics.Models
             modelBuilder.Entity<Entrega>()
                 .Property(e => e.PrecioNormal)
                 .HasPrecision(12, 2);
+
+           
 
             modelBuilder.Entity<Entrega>()
                 .Property(e => e.Descuento)

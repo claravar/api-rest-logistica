@@ -13,7 +13,6 @@ using api_rest_logistics.Models;
 
 namespace api_rest_logistics.Controllers
 {
-    [Authorize]
     public class EntregasController : ApiController
     {
         private Model db = new Model();
@@ -80,9 +79,19 @@ namespace api_rest_logistics.Controllers
             {
                 return BadRequest(ModelState);
             }
+                      
 
-            db.Entrega.Add(entrega);
-            await db.SaveChangesAsync();
+           
+            if (!NumeroGuiaExists(entrega.NumeroGuia))
+            {
+                db.Entrega.Add(entrega);
+                await db.SaveChangesAsync();
+            }
+            else
+            {
+                ModelState.AddModelError(nameof(entrega.NumeroGuia), $"El número de guía {entrega.NumeroGuia} ya existe.");
+                return BadRequest(ModelState);
+            }
 
             return CreatedAtRoute("DefaultApi", new { id = entrega.IdEntrega }, entrega);
         }
@@ -115,6 +124,11 @@ namespace api_rest_logistics.Controllers
         private bool EntregaExists(int id)
         {
             return db.Entrega.Count(e => e.IdEntrega == id) > 0;
+        }
+
+        private bool NumeroGuiaExists(string numeroGuia)
+        {
+            return db.Entrega.Count(e => e.NumeroGuia == numeroGuia) > 0;
         }
     }
 }

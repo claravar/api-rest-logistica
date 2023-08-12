@@ -9,7 +9,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.UI.WebControls;
 using api_rest_logistics.Models;
+using api_rest_logistics.Security;
 
 namespace api_rest_logistics.Controllers
 {
@@ -81,10 +83,36 @@ namespace api_rest_logistics.Controllers
                 return BadRequest(ModelState);
             }
 
+            try
+            {
+                using (Model db = new Model())
+                {
+                    var lst = db.TipoProducto
+                    .Where(d => d.IdTipoProducto == entregaTipoProducto.TipoProductoId);
+
+                    if (lst.Count() > 0)
+                    {
+                        foreach (var item in lst)
+                        {
+                            entregaTipoProducto.Precio = item.Precio;
+                            entregaTipoProducto.Total = entregaTipoProducto.Cantidad * entregaTipoProducto.Precio;
+                        }
+                    }                   
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+
             db.EntregaTipoProducto.Add(entregaTipoProducto);
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = entregaTipoProducto.IdEntregaTipoProducto }, entregaTipoProducto);
+
+
+
         }
 
         // DELETE: api/EntregaTipoProductos/5
