@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ModelLogistica-Web.config Connection String" description="ModelLogistica Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="data source=109.123.240.105;initial catalog=Logistica;user id=sa;password=hzQPvZBcM2d8PAR9HeTx;Persist Security Info=True;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Sistemas\\Desktop\\api-rest-logistics\\api-rest-logistics\\api-rest-logistics\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ModelLogistica']/@connectionString" />
+  </parameter>
+</parameters>
