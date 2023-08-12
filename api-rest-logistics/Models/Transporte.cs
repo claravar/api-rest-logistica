@@ -1,6 +1,6 @@
 namespace api_rest_logistics.Models
 {
-    using api_rest_logistics.Validation;
+    
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -24,10 +24,11 @@ namespace api_rest_logistics.Models
         public string Descripcion { get; set; }
 
         [StringLength(8)]
-        [NumeroFlota]
+        [RegularExpression(@"^[a-zA-Z]{3}[0-9]{4}[a-zA-Z]{1}$", ErrorMessage = "El formato de flota debe ser AAA0000A")]
         public string Flota { get; set; }
 
         [StringLength(6)]
+        [RegularExpression(@"^[a-zA-Z]{3}[0-9]{3}$", ErrorMessage = "El formato de placa debe ser AAA000")]
         public string Placa { get; set; }
 
         [Required]

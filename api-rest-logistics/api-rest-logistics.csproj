@@ -234,7 +234,6 @@
     </Compile>
     <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validation\NumeroFlotaAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

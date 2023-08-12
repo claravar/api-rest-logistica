@@ -34,7 +34,7 @@ namespace api_rest_logistics.Security
                 issuer: issuerToken,
                 subject: claimsIdentity,
                 notBefore: DateTime.UtcNow,
-                expires: DateTime.UtcNow.AddMinutes(Convert.ToInt32(expireTime)),
+                //expires: DateTime.UtcNow.AddMinutes(Convert.ToInt32(expireTime)),
                 signingCredentials: signingCredentials);
 
             var jwtTokenString = tokenHandler.WriteToken(jwtSecurityToken);

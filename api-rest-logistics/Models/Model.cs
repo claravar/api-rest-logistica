@@ -31,12 +31,7 @@ namespace api_rest_logistics.Models
             modelBuilder.Entity<Bodega>()
                 .Property(e => e.Direccion)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Bodega>()
-                .HasMany(e => e.Entrega)
-                .WithOptional(e => e.Bodega)
-                .HasForeignKey(e => e.BodegaId);
-
+                    
             modelBuilder.Entity<Cliente>()
                 .Property(e => e.Nombre)
                 .IsUnicode(false);

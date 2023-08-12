@@ -81,10 +81,30 @@ namespace api_rest_logistics.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Transporte.Add(transporte);
-            await db.SaveChangesAsync();
+
+           if(!FlotaExists(transporte.Flota) && (transporte.Placa == "")){
+                db.Transporte.Add(transporte);
+                await db.SaveChangesAsync();
+            }
+            else
+            {
+                ModelState.AddModelError(nameof(transporte.Flota), $"El nombre {transporte.Flota} ya existe.");
+                return BadRequest(ModelState);
+            }
+            
+            if(!PlacaExists(transporte.Placa) && (transporte.Flota == ""))
+            {
+                db.Transporte.Add(transporte);
+                await db.SaveChangesAsync();
+            }
+            else
+            {
+                ModelState.AddModelError(nameof(transporte.Placa), $"El nombre {transporte.Placa} ya existe.");
+                return BadRequest(ModelState);
+            }
 
             return CreatedAtRoute("DefaultApi", new { id = transporte.IdTransporte }, transporte);
+
         }
 
         // DELETE: api/Transportes/5
@@ -115,6 +135,16 @@ namespace api_rest_logistics.Controllers
         private bool TransporteExists(int id)
         {
             return db.Transporte.Count(e => e.IdTransporte == id) > 0;
+        }
+
+        private bool FlotaExists(string flota)
+        {
+            return db.Transporte.Count(e => e.Flota.ToUpper() == flota.ToUpper()) > 0;
+        }
+
+        private bool PlacaExists(string placa)
+        {
+            return db.Transporte.Count(e => e.Placa.ToUpper() == placa.ToUpper()) > 0;
         }
     }
 }
